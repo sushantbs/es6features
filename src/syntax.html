@@ -1,0 +1,59 @@
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../bower_components/app-route/app-route.html">
+<link rel="import" href="components/live-editor.html">
+<link rel="import" href="syntax/es6-promise.html">
+<link rel="import" href="syntax/es6-strings.html">
+<dom-module id="syntax">
+  <template>
+    <style>
+      :host {
+        display: block;
+        color: black;
+        padding: 20px;
+      }
+    </style>
+    <div>
+      <!-- <app-route route="{{route}}" pattern="/:section" data="{{routeData}}" tail="{{subroute}}"></app-route> -->
+      <iron-pages
+          selected="[[section]]"
+          attr-for-selected="name">
+
+          <es6-promise name="promise"></es6-promise>
+          <es6-strings name="templit"></es6-strings>
+      </iron-pages>
+      <div>
+        <live-editor></live-editor>
+      </div>
+    </div>
+  </template>
+  <script>
+    class SyntaxSlide extends Polymer.Element {
+
+      static get is() {
+        return 'syntax';
+      }
+
+      static get properties() {
+        return {
+          route: {
+            type: Object,
+            value: null
+          },
+          routeData: Object,
+          section: String
+        }
+      }
+
+      static get observers() {
+        return [
+          'onRoutePageChange(routeData.section)'
+        ]
+      }
+
+      onRoutePageChange (section) {
+        this.section = section || 'promise';
+      }
+    }
+    window.customElements.define(SyntaxSlide.is, SyntaxSlide);
+  </script>
+</dom-module>

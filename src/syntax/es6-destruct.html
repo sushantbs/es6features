@@ -1,0 +1,39 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../shared-styles.html">
+<dom-module id="es6-destruct">
+  <template>
+    <style include="shared-styles">
+      :host {
+        display: block;
+      }
+    </style>
+    <div class="card">
+      <div class="circle">3</div>
+      <h1>Destructuring</h1>
+      <p>Unwrapping the core</p>
+      <div class="presenter-note">
+        <pre>
+          <code>
+            var a = 'abc';
+            console.log(`string: ${a}`);
+
+            var obj = {key: 'value'};
+            console.log(`object value: ${obj.key}`);
+
+            var arr = ['abc', 2, {key: 'value'}];
+            console.log(`the shit: ${arr[0]} ${arr[1]}
+            ${arr[2].key}`)
+          </code>
+        </pre>
+      </div>
+    </div>
+  </template>
+  <script>
+    class ES6Destruct extends Polymer.Element {
+      static get is() {
+        return 'es6-destruct';
+      }
+    }
+    window.customElements.define(ES6Destruct.is, ES6Destruct);
+  </script>
+</dom-module>

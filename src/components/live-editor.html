@@ -1,0 +1,34 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+
+<dom-module id='live-editor'>
+  <template>
+    <style>
+      :host {
+        width: 100%;
+        height: 300px;
+        display: block;
+      }
+
+      iframe {
+        width: 100%;
+        height: 300px;
+        border-width: 0px;
+      }
+    </style>
+    <div>
+        <iframe src="http://jsbin.com/vihafah/edit?js,console"></iframe>
+    </div>
+  </template>
+  <script type="text/javascript">
+    class LiveEditor extends Polymer.Element {
+      constructor() {
+        super();
+      }
+
+      static get is() {
+        return 'live-editor';
+      }
+    }
+    window.customElements.define(LiveEditor.is, LiveEditor);
+  </script>
+</dom-module>

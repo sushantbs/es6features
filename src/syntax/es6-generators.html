@@ -1,0 +1,39 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../shared-styles.html">
+<dom-module id="es6-generators">
+  <template>
+    <style include="shared-styles">
+      :host {
+        display: block;
+      }
+    </style>
+    <div class="card">
+      <div class="circle">6</div>
+      <h1>Generators</h1>
+      <p>Functions on steroids</p>
+      <div class="presenter-note">
+        <pre>
+          <code>
+            var a = 'abc';
+            console.log(`string: ${a}`);
+
+            var obj = {key: 'value'};
+            console.log(`object value: ${obj.key}`);
+
+            var arr = ['abc', 2, {key: 'value'}];
+            console.log(`the shit: ${arr[0]} ${arr[1]}
+            ${arr[2].key}`)
+          </code>
+        </pre>
+      </div>
+    </div>
+  </template>
+  <script>
+    class ES6Generators extends Polymer.Element {
+      static get is() {
+        return 'es6-generators';
+      }
+    }
+    window.customElements.define(ES6Generators.is, ES6Generators);
+  </script>
+</dom-module>

@@ -1,0 +1,51 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../shared-styles.html">
+
+<dom-module id="es6-promise">
+  <template>
+    <style include="shared-styles">
+      :host {
+        display: block;
+      }
+    </style>
+    <div class="card">
+      <div class="circle">7</div>
+      <h1>Promises</h1>
+      <p>The way out of callback hell</p>
+      <pre>
+        <code>
+          var p = new Promise(
+            (resolve, reject) => {
+              console.log('invoke async');
+              setTimeout(() => {
+                console.log('async complete');
+                resolve('async result')
+              }, 1000);
+            }
+          );
+
+          q = p.then((val) => (new Promise(
+            (resolve, reject) => {
+              console.log('invoke second async');
+              setTimeout(() => {
+                console.log('second async complete');
+                resolve(`${val} then second async`);
+              }, 1000);
+            }
+          )));
+
+          p.then((val) => console.log(`p result: ${val}`));
+          q.then((val) => console.log(`final result: ${val}`));
+        </code>
+      </pre>
+    </div>
+  </template>
+  <script>
+    class ES6Promise extends Polymer.Element {
+      static get is() {
+        return 'es6-promise';
+      }
+    }
+    window.customElements.define(ES6Promise.is, ES6Promise);
+  </script>
+</dom-module>

@@ -1,0 +1,39 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../shared-styles.html">
+<dom-module id="es6-objects">
+  <template>
+    <style include="shared-styles">
+      :host {
+        display: block;
+      }
+    </style>
+    <div class="card">
+      <div class="circle">4</div>
+      <h1>Object Properties</h1>
+      <p>Sweet syntactic sugar</p>
+      <div class="presenter-note">
+        <pre>
+          <code>
+            var a = 'abc';
+            console.log(`string: ${a}`);
+
+            var obj = {key: 'value'};
+            console.log(`object value: ${obj.key}`);
+
+            var arr = ['abc', 2, {key: 'value'}];
+            console.log(`the shit: ${arr[0]} ${arr[1]}
+            ${arr[2].key}`)
+          </code>
+        </pre>
+      </div>
+    </div>
+  </template>
+  <script>
+    class ES6Objects extends Polymer.Element {
+      static get is() {
+        return 'es6-objects';
+      }
+    }
+    window.customElements.define(ES6Objects.is, ES6Objects);
+  </script>
+</dom-module>

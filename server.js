@@ -35,8 +35,7 @@ app.use(function(req, res, next) {
  * Get port from environment and store in Express.
  */
 
-var port = process.env.PORT || 8000;
-var ip = '127.0.0.1';
+var port = (process.env.PORT || 8000);
 app.set('port', port);
 
 /**
@@ -49,4 +48,4 @@ var server = http.createServer(app);
  * Listen on provided port, on all network interfaces.
  */
 
-server.listen(port, ip);
+server.listen(port);

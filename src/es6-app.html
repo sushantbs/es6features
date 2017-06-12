@@ -24,14 +24,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 <!-- <link rel="lazy-import" href="recap.html">
 <link rel="lazy-import" href="syntax.html"> -->
-
+<link rel="import" href="my-icons.html">
 <link rel="import" href="recap.html">
 <link rel="import" href="syntax.html">
-
+<link rel="import" href="questions.html">
+<link rel="import" href="references.html">
+<link rel="import" href="shared-styles.html">
 
 <dom-module id="es6-app">
   <template>
-    <style>
+    <style include="shared-styles">
       :host {
         --app-primary-color: #4285f4;
         --app-secondary-color: black;
@@ -77,10 +79,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         data="{{routeData}}"
         tail="{{subroute}}"></app-route>
 
-    <app-drawer-layout fullbleed>
+    <app-drawer-layout fullbleed force-narrow>
       <!-- Drawer content -->
       <app-drawer id="drawer" slot="drawer">
-        <app-toolbar>Slides</app-toolbar>
+        <app-toolbar></app-toolbar>
         <iron-selector selected="[[page]]" attr-for-selected="name" class="drawer-list" role="navigation">
           <a name="about" href="about"></a>
           <a name="recap" href="recap">Why are we here?</a>
@@ -97,8 +99,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             <a name="syntax-classes" href="syntax-classes">Classes</a>
           </iron-selector>
         </iron-collapse>
-        <iron-selector selected="[[page]]" attr-for-selected="name" class="drawer-list" role="navigation">
+        <iron-selector selected="[[page]]" fallback-selection="default" attr-for-selected="name" class="drawer-list" role="navigation">
           <a name="references" href="references">References</a>
+          <a name="questions" href="questions">Questions?</a>
         </iron-selector>
       </app-drawer>
 
@@ -108,19 +111,27 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         <app-header slot="header" condenses reveals effects="waterfall">
           <app-toolbar>
             <paper-icon-button icon="my-icons:menu" drawer-toggle></paper-icon-button>
-            <div main-title>The ES6 Dojo</div>
+            <div main-title>ES6 Playground</div>
           </app-toolbar>
         </app-header>
 
         <iron-pages
             selected="[[page]]"
             attr-for-selected="name"
-            fallback-selection="view404"
+            fallback-selection="default"
             role="main">
 
-            <recap name="recap" data="{this.appData}"></recap>
-            <syntax section="promise" name="syntax-promise" route="{{subroute}}" data="{this.appData}"></syntax>
-            <syntax section="templit" name="syntax-templit" route="{{subroute}}" data="{this.appData}"></syntax>
+            <recap-slide name="recap" data="{this.appData}"></recap-slide>
+            <question-slide name="questions"></question-slide>
+            <syntax-slide section="promise" name="syntax-promise" route="{{subroute}}" data="{this.appData}"></syntax-slide>
+            <syntax-slide section="templit" name="syntax-templit" route="{{subroute}}" data="{this.appData}"></syntax-slide>
+            <references-slide name="references"></references-slide>
+            <div name="default">
+              <div class="card">
+                <h1>ES6, finally...</h1>
+                <p>But why now?</p>
+              </div>
+            </div>
         </iron-pages>
       </app-header-layout>
     </app-drawer-layout>
@@ -144,6 +155,19 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           rootPattern: String,
           routeData: Object,
           subroute: String,
+          routeSequence: {
+            type: Array,
+            value: [
+              '/recap',
+              '/syntax-templit',
+              '/references',
+              '/questions'
+            ]
+          },
+          sequnceNumber: {
+            type: Number,
+            value:  0
+          }
         };
       }
 
@@ -159,6 +183,36 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         // Get root pattern for app-route, for more info about `rootPath` see:
         // https://www.polymer-project.org/2.0/docs/upgrade#urls-in-templates
         this.rootPattern = (new URL(this.rootPath)).pathname;
+
+        this.boundKeyHandler = this.keyHandler.bind(this);
+      }
+
+      connectedCallback() {
+        super.connectedCallback();
+        document.body.addEventListener('keydown', this.boundKeyHandler);
+      }
+
+      disconnectedCallback() {
+        super.disconnectedCallback();
+        document.body.removeEventListener('keydown', this.boundKeyHandler);
+      }
+
+      keyHandler (e) {
+        let keyCode = e.keyCode;
+
+        if (keyCode === 39) {
+          if (this.sequnceNumber < this.routeSequence.length) {
+            window.history.pushState(this.sequenceNumber, null, this.routeSequence[this.sequnceNumber]);
+            this.sequnceNumber += 1;
+            this.dispatchEvent(new CustomEvent('location-changed', {bubbles: true}));
+          }
+        } else if (keyCode === 37) {
+          if (this.sequnceNumber) {
+            window.history.back();
+            this.sequnceNumber -= 1;
+            //this.dispatchEvent(new CustomEvent('location-changed', {bubbles: true}));
+          }
+        }
       }
 
       toggleSyntax() {

@@ -12,7 +12,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="shared-styles.html">
 <link rel="import" href="components/live-editor.html">
 
-<dom-module id="references-slide">
+<dom-module id="question-slide">
   <template>
     <style include="shared-styles">
       :host {
@@ -21,21 +21,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     </style>
 
     <div class="card">
-      <div class="circle">8</div>
-      <h1>References</h1>
-      <ul>
-        <li><a target="_blank" href="http://es6-features.org/">http://es6-features.org/</a></li>
-        <li><a target="_blank" href="http://es6-features.org/">http://es6-features.org/</a></li>
-        <li><a target="_blank" href="http://es6-features.org/">http://es6-features.org/</a></li>
-      </ul>
+      <div class="circle">?</div>
+      <h1>Questions?</h1>
     </div>
   </template>
 
   <script>
-    class ReferencesSlide extends Polymer.Element {
-      static get is() { return 'references-slide'; }
+    class QuestionSlide extends Polymer.Element {
+      static get is() { return 'question-slide'; }
     }
 
-    window.customElements.define(ReferencesSlide.is, ReferencesSlide);
+    window.customElements.define(QuestionSlide.is, QuestionSlide);
   </script>
 </dom-module>

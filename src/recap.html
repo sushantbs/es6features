@@ -12,27 +12,43 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="shared-styles.html">
 <link rel="import" href="components/live-editor.html">
 
-<dom-module id="recap">
+<dom-module id="recap-slide">
   <template>
     <style include="shared-styles">
       :host {
         display: block;
       }
+
+      img {
+        display: block;
+        /*margin: 0 auto;*/
+        margin-bottom: 20px;
+        width: 800px;
+        /*display: none;*/
+      }
+
+      li {
+        font-size: 20px;
+      }
     </style>
 
     <div class="card">
       <div class="circle">1</div>
-      <h1>Recap</h1>
-      <p>Lorem ipsum dolor sit amet, per in nusquam nominavi periculis, sit elit oportere ea.Lorem ipsum dolor sit amet, per in nusquam nominavi periculis, sit elit oportere ea.Cu mei vide viris gloriatur, at populo eripuit sit.</p>
-      <div class="note">
-        This is the note section that should be hidden for the user
-      </div>
+      <h1>Why are we here?</h1>
+      <img src="/images/why.jpg" />
+      <ol>
+        <li>Ancient history</li>
+        <li>Ajax</li>
+        <li>Node</li>
+        <li>JS everywhere</li>
+        <li>The tipping point</li>
+      </ol>
     </div>
   </template>
 
   <script>
     class RecapSlide extends Polymer.Element {
-      static get is() { return 'recap'; }
+      static get is() { return 'recap-slide'; }
     }
 
     window.customElements.define(RecapSlide.is, RecapSlide);

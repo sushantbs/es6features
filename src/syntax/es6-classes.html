@@ -10,19 +10,40 @@
     <div class="card">
       <div class="circle">8</div>
       <h1>Classes</h1>
-      <p>Classes, finally used the way the good Lord intented.</p>
+      <p>!functions</p>
       <div class="presenter-note">
         <pre>
           <code>
-            var a = 'abc';
-            console.log(`string: ${a}`);
+class Shape {
+    constructor (id, x, y) {
+        this.id = id
+        this.move(x, y)
+    }
+    move (x, y) {
+        this.x = x
+        this.y = y
+    }
+}
 
-            var obj = {key: 'value'};
-            console.log(`object value: ${obj.key}`);
+class Circle extends Shape {
+    constructor (id, x, y, radius) {
+        super(id, x, y)
+        this.radius = radius
+    }
+}
 
-            var arr = ['abc', 2, {key: 'value'}];
-            console.log(`the shit: ${arr[0]} ${arr[1]}
-            ${arr[2].key}`)
+class Rectangle extends Shape {
+    constructor (id, x, y, width, height) {
+        super(id, x, y);
+        this.width  = width
+        this.height = height
+    }
+
+    static get type() {return 'rectangle'; }
+
+    get area() {return this.width * this.height; }
+}
+
           </code>
         </pre>
       </div>

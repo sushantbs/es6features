@@ -3,13 +3,17 @@
 <link rel="import" href="components/live-editor.html">
 <link rel="import" href="syntax/es6-promise.html">
 <link rel="import" href="syntax/es6-strings.html">
+<link rel="import" href="syntax/es6-destruct.html">
+<link rel="import" href="syntax/es6-objects.html">
+<link rel="import" href="syntax/es6-arrow.html">
+<link rel="import" href="syntax/es6-generators.html">
+<link rel="import" href="syntax/es6-classes.html">
 <dom-module id="syntax-slide">
   <template>
     <style>
       :host {
         display: block;
         color: black;
-        padding: 20px;
       }
     </style>
     <div>
@@ -20,6 +24,11 @@
 
           <es6-promise name="promise"></es6-promise>
           <es6-strings name="templit"></es6-strings>
+          <es6-destruct name="destruct"></es6-destruct>
+          <es6-objects name="objects"></es6-objects>
+          <es6-arrow name="arrow"></es6-arrow>
+          <es6-generators name="generators"></es6-generators>
+          <es6-classes name="classes"></es6-classes>
       </iron-pages>
       <div>
         <live-editor></live-editor>

@@ -23,6 +23,18 @@ console.log(`object value: ${obj.key}`);
 var arr = ['abc', 2, {key: 'value'}];
 console.log(`the shit: ${arr[0]} ${arr[1]}
 ${arr[2].key}`)
+
+// mapped template literals
+var myFn = function (strings, ...values) {
+  console.log(strings);
+  console.log(values);
+}
+var abc = 'abc',
+  pqr = 'pqr',
+  x = 20;
+
+myFn `first ${abc} then ${pqr} finally ${x}`;
+
           </code>
         </pre>
       </div>

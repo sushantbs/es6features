@@ -9,20 +9,29 @@
     </style>
     <div class="card">
       <div class="circle">4</div>
-      <h1>Object Properties</h1>
+      <h1>Other enhancements</h1>
       <p>Sweet syntactic sugar</p>
       <div class="presenter-note">
         <pre>
           <code>
-            var a = 'abc';
-            console.log(`string: ${a}`);
+function myKeyFn (b = 0) {
+  return ('evaled' + b);
+}
 
-            var obj = {key: 'value'};
-            console.log(`object value: ${obj.key}`);
+function myValFn (c = 1) {
+  return [c, c+1, c+2];
+}
 
-            var arr = ['abc', 2, {key: 'value'}];
-            console.log(`the shit: ${arr[0]} ${arr[1]}
-            ${arr[2].key}`)
+let abc = 'abc';
+
+var obj = {
+  abc,
+  [myKeyFn(3)]: myValFn(3),
+  [myKeyFn()]: myValFn()
+};
+
+var spreadConcat = [...obj[myKeyFn(3)], ...obj.evaled0];
+
           </code>
         </pre>
       </div>

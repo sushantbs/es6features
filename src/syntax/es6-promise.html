@@ -12,32 +12,35 @@
       <div class="circle">7</div>
       <h1>Promises</h1>
       <p>The way out of callback hell</p>
-      <pre>
-        <code>
-          var p = new Promise(
-            (resolve, reject) => {
-              console.log('invoke async');
-              setTimeout(() => {
-                console.log('async complete');
-                resolve('async result')
-              }, 1000);
-            }
-          );
+      <div class="presenter-note">
+        <pre>
+          <code>
+var p = new Promise(
+  (resolve, reject) => {
+    console.log('invoke async');
+    setTimeout(() => {
+      console.log('async complete');
+      let a = 10, b = 20;
+      resolve({a, b});
+    }, 1000);
+  }
+);
 
-          q = p.then((val) => (new Promise(
-            (resolve, reject) => {
-              console.log('invoke second async');
-              setTimeout(() => {
-                console.log('second async complete');
-                resolve(`${val} then second async`);
-              }, 1000);
-            }
-          )));
+q = p.then(({a, b}}) => (new Promise(
+  (resolve, reject) => {
+    console.log('invoke second async');
+    setTimeout(() => {
+      console.log('second async complete');
+      resolve(`${a + b} then second async`);
+    }, 1000);
+  }
+)));
 
-          p.then((val) => console.log(`p result: ${val}`));
-          q.then((val) => console.log(`final result: ${val}`));
-        </code>
-      </pre>
+p.then((val) => console.log(`p result: ${val}`));
+q.then((val) => console.log(`final result: ${val}`));
+          </code>
+        </pre>
+      </div>
     </div>
   </template>
   <script>

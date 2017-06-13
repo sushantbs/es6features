@@ -70,6 +70,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         color: black;
         font-weight: bold;
       }
+
+      img {
+        display: block;
+        /*margin: 0 auto;*/
+        margin-bottom: 20px;
+        width: 600px;
+        /*display: none;*/
+      }
+
     </style>
 
     <app-location route="{{route}}"></app-location>
@@ -84,8 +93,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       <app-drawer id="drawer" slot="drawer">
         <app-toolbar></app-toolbar>
         <iron-selector selected="[[page]]" attr-for-selected="name" class="drawer-list" role="navigation">
-          <a name="about" href="about"></a>
-          <a name="recap" href="recap">Why are we here?</a>
+          <a name="recap" href="recap">A quick recap</a>
         </iron-selector>
         <a on-click="toggleSyntax" href="javascript://">Syntax</a>
         <iron-collapse id="syntaxlist">
@@ -125,11 +133,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             <question-slide name="questions"></question-slide>
             <syntax-slide section="promise" name="syntax-promise" route="{{subroute}}" data="{this.appData}"></syntax-slide>
             <syntax-slide section="templit" name="syntax-templit" route="{{subroute}}" data="{this.appData}"></syntax-slide>
+            <syntax-slide section="destruct" name="syntax-destruct" route="{{subroute}}" data="{this.appData}"></syntax-slide>
+            <syntax-slide section="objects" name="syntax-objects" route="{{subroute}}" data="{this.appData}"></syntax-slide>
+            <syntax-slide section="arrow" name="syntax-arrow" route="{{subroute}}" data="{this.appData}"></syntax-slide>
+            <syntax-slide section="generators" name="syntax-generators" route="{{subroute}}" data="{this.appData}"></syntax-slide>
+            <syntax-slide section="classes" name="syntax-classes" route="{{subroute}}" data="{this.appData}"></syntax-slide>
             <references-slide name="references"></references-slide>
             <div name="default">
               <div class="card">
-                <h1>ES6, finally...</h1>
-                <p>But why now?</p>
+                <h1>Why are we here?</h1>
+                <img src="/images/why.jpg" />
               </div>
             </div>
         </iron-pages>
@@ -160,6 +173,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             value: [
               '/recap',
               '/syntax-templit',
+              '/syntax-destruct',
+              '/syntax-objects',
+              '/syntax-arrow',
+              '/syntax-generators',
+              '/syntax-promise',
+              '/syntax-classes',
               '/references',
               '/questions'
             ]

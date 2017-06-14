@@ -10,38 +10,37 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 <link rel="import" href="../bower_components/polymer/polymer-element.html">
 <link rel="import" href="shared-styles.html">
-<link rel="import" href="components/live-editor.html">
 
-<dom-module id="recap-slide">
+<dom-module id="overview-slide">
   <template>
     <style include="shared-styles">
       :host {
         display: block;
       }
+	  
+	  img {
+		display: block;
+		/*margin: 0 auto;*/
+		margin-bottom: 20px;
+		width: 600px;
+		/*display: none;*/
+	  }
 
-      li {
-        font-size: 20px;
-      }
     </style>
 
     <div class="card">
-      <div class="circle">1.1</div>
-      <h1>A Quick Recap</h1>
-      <ol>
-        <li>Ancient history</li>
-        <li>Ajax</li>
-        <li>Node</li>
-        <li>JS everywhere</li>
-        <li>The tipping point</li>
-      </ol>
+      <div class="circle">1</div>
+      <h1>Why Are We Here?</h1>
+      <img src="/images/why.jpg" />
+	  <p>The whys, whats & hows of using ES6</p> 
     </div>
   </template>
 
   <script>
-    class RecapSlide extends Polymer.Element {
-      static get is() { return 'recap-slide'; }
+    class OverviewSlide extends Polymer.Element {
+      static get is() { return 'overview-slide'; }
     }
 
-    window.customElements.define(RecapSlide.is, RecapSlide);
+    window.customElements.define(OverviewSlide.is, OverviewSlide);
   </script>
 </dom-module>
